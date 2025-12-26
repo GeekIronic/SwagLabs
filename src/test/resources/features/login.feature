@@ -19,3 +19,23 @@ Feature: Verificación de login de usuario
     Then el sistema permanecera en la pagina del login
     And validara que exista el mensaje "Epic sadface: Sorry, this user has been locked out."
 
+  @LoginFallido
+  Scenario: Validar logeo con campo usuario vacio
+    Given estoy en el formulario
+    When ingreso en el campo username el valor ""
+    And ingreso en el campo password el valor "secret_sauce"
+    And doy clic en el boton Login
+    Then el sistema permanecera en la pagina del login
+    And validara que exista el mensaje "Epic sadface: Username is required"
+
+
+  @LoginFallido
+  Scenario: Validar logeo con campo contraseña vacio
+    Given estoy en el formulario
+    When ingreso en el campo username el valor "standard_user"
+    And ingreso en el campo password el valor ""
+    And doy clic en el boton Login
+    Then el sistema permanecera en la pagina del login
+    And validara que exista el mensaje "Epic sadface: Password is required"
+
+

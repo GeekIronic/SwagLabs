@@ -31,7 +31,6 @@ public class WebDriverManager {
             options.addArguments("--disable-extensions");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-
             driver = new ChromeDriver(options);
         }
         return driver;
