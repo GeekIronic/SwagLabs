@@ -39,15 +39,24 @@ public class LoginTestDefinitions {
 
     }
     @Then("el sistema lo redireccionara a la pagina principal de compras")
-    public void el_sistema_lo_redireccionara_a_la_pagina_principal_de_compras() {
+    public void el_sistema_lo_redireccionara_a_la_pagina_principal_de_compras() throws InterruptedException {
         String Validationurl = driver.getCurrentUrl();
         Assert.assertNotEquals(Validationurl, "https://www.saucedemo.com/");
+        Thread.sleep(4000);
+    }
+
+    @Then("validara que existan el listado de opcions de compra")
+    public void validara_que_existan_el_listado_de_opcions_de_compra() {
+        String inventory_list = "";
+        List ContList = driver.findElements(By.xpath("//div[@class='inventory_list']//child::div[@class='inventory_item']//child::div[contains(@class, 'inventory_item_img')]"));
+        System.out.println(ContList.size());
+        Assert.assertTrue("La cantidad de articulos no coinciden",ContList.size() == 6);
     }
 
     @Then("validara que exista las opciones de {string}")
     public void validara_que_exista_las_opciones_de(String string) throws InterruptedException {
         List<WebElement> botonCompra = driver.findElements(By.xpath("//button[contains(text(),'Add to cart')]"));
-        Assert.assertFalse("No fue cargada la página de compras",botonCompra.isEmpty());
+        Assert.assertFalse("No fue cargada los botones de compras",botonCompra.isEmpty());
         Thread.sleep(4000);
     }
 

@@ -8,7 +8,9 @@ Feature: Verificación de login de usuario
     And ingreso en el campo password el valor "secret_sauce"
     And doy clic en el boton Login
     Then el sistema lo redireccionara a la pagina principal de compras
+    And validara que existan el listado de opcions de compra
     And validara que exista las opciones de "Add to cart"
+
 
   @LoginFallido
   Scenario: Validar logeo con credenciales bloqueadas
