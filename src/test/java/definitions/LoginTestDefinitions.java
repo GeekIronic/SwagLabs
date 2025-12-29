@@ -17,8 +17,11 @@ public class LoginTestDefinitions {
     WebDriver driver = new  WebDriverManager().getDriver();
 
     @Given("estoy en el formulario")
-    public void estoy_en_el_formulario() {
+    public void estoy_en_el_formulario() throws InterruptedException {
         driver.get("https://www.saucedemo.com/");
+        Thread.sleep(4000);
+        String titel = driver.findElement(By.xpath("//div[@class='login_logo']")).getText();
+        Assert.assertEquals("Swag Labs", titel);
     }
     @When("ingreso en el campo username el valor {string}")
     public void ingreso_en_el_campo_username_el_valor(String string) {
@@ -37,8 +40,10 @@ public class LoginTestDefinitions {
     }
     @Then("el sistema lo redireccionara a la pagina principal de compras")
     public void el_sistema_lo_redireccionara_a_la_pagina_principal_de_compras() {
-
+        String Validationurl = driver.getCurrentUrl();
+        Assert.assertNotEquals(Validationurl, "https://www.saucedemo.com/");
     }
+
     @Then("validara que exista las opciones de {string}")
     public void validara_que_exista_las_opciones_de(String string) throws InterruptedException {
         List<WebElement> botonCompra = driver.findElements(By.xpath("//button[contains(text(),'Add to cart')]"));
@@ -50,7 +55,8 @@ public class LoginTestDefinitions {
 
     @Then("el sistema permanecera en la pagina del login")
     public void el_sistema_permanecera_en_la_pagina_del_login() {
-
+        String Validationurl = driver.getCurrentUrl();
+        Assert.assertEquals(Validationurl,"https://www.saucedemo.com/");
     }
     @Then("validara que exista el mensaje {string}")
     public void validara_que_exista_el_mensaje(String string) throws InterruptedException {
