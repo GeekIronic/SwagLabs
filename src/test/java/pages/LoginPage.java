@@ -3,6 +3,7 @@ package pages;
 public class LoginPage {
 
     private String TxtTitelHome = "//div[@class='login_logo']";
+    private String FormLogin = "//form";
     private String TxtUser = "user-name";
     private String TxtPassword = "password";
     private String BtnLogin = "//input[@id='login-button']";
@@ -11,8 +12,9 @@ public class LoginPage {
 
     public LoginPage() {}
 
-    public LoginPage(String txtTitelHome, String txtUser, String txtPassword, String btnLogin, String txtMessagaeLogin) {
+    public LoginPage(String txtTitelHome, String formLogin, String txtUser, String txtPassword, String btnLogin, String txtMessagaeLogin) {
         TxtTitelHome = txtTitelHome;
+        FormLogin = formLogin;
         TxtUser = txtUser;
         TxtPassword = txtPassword;
         BtnLogin = btnLogin;
@@ -38,5 +40,9 @@ public class LoginPage {
 
     public String getTxtMessagaeLogin() {
         return TxtMessagaeLogin;
+    }
+
+    public String getFormLogin() {
+        return FormLogin;
     }
 }

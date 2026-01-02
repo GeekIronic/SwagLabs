@@ -13,7 +13,7 @@ import pages.LoginPage;
 
 import java.util.List;
 
-public class LoginTestDefinitions {
+public class LoginTest {
 
     WebDriver driver = new  WebDriverManager().getDriver();
     LoginPage loginPage = new LoginPage();
@@ -23,21 +23,28 @@ public class LoginTestDefinitions {
         driver.get("https://www.saucedemo.com/");
         Thread.sleep(4000);
         String TitelHome = driver.findElement(By.xpath(loginPage.getTxtTitelHome())).getText();
+        WebElement FormLoginPage = driver.findElement(By.xpath(loginPage.getFormLogin()));
         Assert.assertEquals("Swag Labs", TitelHome);
+        Assert.assertTrue("El formulario no existe",FormLoginPage.isDisplayed());
     }
     @When("ingreso en el campo username el valor {string}")
     public void ingreso_en_el_campo_username_el_valor(String string) {
         WebElement user = driver.findElement(By.name(loginPage.getTxtUser()));
+        Assert.assertTrue("El campo usuario no existe", user.isDisplayed());
         user.sendKeys(string);
     }
     @When("ingreso en el campo password el valor {string}")
     public void ingreso_en_el_campo_password_el_valor(String string) throws InterruptedException {
-        driver.findElement(By.name(loginPage.getTxtPassword())).sendKeys(string);
+        WebElement pass = driver.findElement(By.name(loginPage.getTxtPassword()));
+        Assert.assertTrue("El campo contraseña no existe",pass.isDisplayed());
+        pass.sendKeys(string);
         Thread.sleep(4000);
     }
     @When("doy clic en el boton Login")
-    public void doy_clic_en_el_boton_login() {
-        driver.findElement(By.xpath(loginPage.getBtnLogin())).sendKeys(Keys.ENTER);
+    public void doy_clic_en_el_boton_login() throws InterruptedException {
+        WebElement btnlogin = driver.findElement(By.xpath(loginPage.getBtnLogin()));
+        btnlogin.sendKeys(Keys.ENTER);
+        Thread.sleep(4000);
     }
     @Then("el sistema lo redireccionara a la pagina principal de compras")
     public void el_sistema_lo_redireccionara_a_la_pagina_principal_de_compras() throws InterruptedException {
@@ -78,7 +85,6 @@ public class LoginTestDefinitions {
     @Then("validara que exista el mensaje {string}")
     public void validara_que_exista_el_mensaje(String string) throws InterruptedException {
         WebElement messBlock =  driver.findElement(By.xpath("//*[@id=\"login_button_container\"]/div/form/div[3]/h3"));
-        //System.out.println(messBlock.getText());
         Assert.assertTrue("Comparación de mensajes exitoso",messBlock.getText().contains(string));
         Thread.sleep(4000);
     }
