@@ -1,14 +1,11 @@
 package definitions;
 
-import configs.WebDriverManager;
+import hooks.WebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import pages.LoginPage;
 
 import java.util.List;
@@ -48,23 +45,15 @@ public class LoginTest {
     }
     @Then("el sistema lo redireccionara a la pagina principal de compras")
     public void el_sistema_lo_redireccionara_a_la_pagina_principal_de_compras() throws InterruptedException {
-        String Validationurl = driver.getCurrentUrl();
-        Assert.assertNotEquals(Validationurl, "https://www.saucedemo.com/");
+        String UrlCapture = driver.getCurrentUrl().toString();
+        loginPage.setUrlHomeCapture(UrlCapture);
+        Assert.assertNotEquals(loginPage.getUrlHomeCapture(), "https://www.saucedemo.com/");
         Thread.sleep(4000);
     }
 
-
-
-
-
-
-
-
     @Then("validara que existan el listado de opcions de compra")
     public void validara_que_existan_el_listado_de_opcions_de_compra() {
-        String inventory_list = "";
         List ContList = driver.findElements(By.xpath("//div[@class='inventory_list']//child::div[@class='inventory_item']//child::div[contains(@class, 'inventory_item_img')]"));
-        System.out.println(ContList.size());
         Assert.assertTrue("La cantidad de articulos no coinciden",ContList.size() == 6);
     }
 
@@ -79,7 +68,7 @@ public class LoginTest {
 
     @Then("el sistema permanecera en la pagina del login")
     public void el_sistema_permanecera_en_la_pagina_del_login() {
-        String Validationurl = driver.getCurrentUrl();
+        String Validationurl = driver.getCurrentUrl().toString();
         Assert.assertEquals(Validationurl,"https://www.saucedemo.com/");
     }
     @Then("validara que exista el mensaje {string}")
@@ -89,4 +78,24 @@ public class LoginTest {
         Thread.sleep(4000);
     }
 
+
+    //Precondicion
+    @When("ingreso en el campo username el valor {string} el password {string} y da clic en el boton de Logear")
+    public void ingreso_en_el_campo_username_el_valor_el_password_y_da_clic_en_el_boton_de_logear(String User, String Pass) throws InterruptedException {
+        WebElement user = driver.findElement(By.name(loginPage.getTxtUser()));
+        user.sendKeys(User);
+        WebElement pass = driver.findElement(By.name(loginPage.getTxtPassword()));
+        pass.sendKeys(Pass);
+        Thread.sleep(3000);
+        WebElement btnlogin = driver.findElement(By.xpath(loginPage.getBtnLogin()));
+        btnlogin.click();
+    }
+
+    @Then("El sistema lo redireccionara a la pagina de compras")
+    public void el_sistema_lo_redireccionara_a_la_pagina_de_compras() throws InterruptedException {
+        String UrlCapture = driver.getCurrentUrl().toString();
+        loginPage.setUrlHomeCapture(UrlCapture);
+        Assert.assertNotEquals(loginPage.getUrlHomeCapture(), "https://www.saucedemo.com/");
+        Thread.sleep(4000);
+    }
 }

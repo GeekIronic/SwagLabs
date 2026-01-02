@@ -11,7 +11,6 @@ Feature: Verificación de login de usuario
     And validara que existan el listado de opcions de compra
     And validara que exista las opciones de "Add to cart"
 
-
   @LoginFallido
   Scenario: Validar logeo con credenciales bloqueadas
     Given estoy en el formulario
@@ -30,7 +29,6 @@ Feature: Verificación de login de usuario
     Then el sistema permanecera en la pagina del login
     And validara que exista el mensaje "Epic sadface: Username is required"
 
-
   @LoginFallido
   Scenario: Validar logeo con campo contraseña vacio
     Given estoy en el formulario
@@ -39,5 +37,3 @@ Feature: Verificación de login de usuario
     And doy clic en el boton Login
     Then el sistema permanecera en la pagina del login
     And validara que exista el mensaje "Epic sadface: Password is required"
-
-

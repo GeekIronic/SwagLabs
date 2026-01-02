@@ -1,19 +1,13 @@
+Feature: Validación y verificación de la pagina de compra
 
-Feature: Validación de la pagina principal de compra
-
-  Background:
+  Background: Iniciar sesion
     Given estoy en el formulario
-    When ingreso en el campo username el valor "standard_user"
-    And ingreso en el campo password el valor "secret_sauce"
-    And doy clic en el boton Login
-    Then el sistema lo redireccionara a la pagina principal de compras
-    And validara que existan el listado de opcions de compra
-    And validara que exista las opciones de "Add to cart"
+    When ingreso en el campo username el valor "standard_user" el password "secret_sauce" y da clic en el boton de Logear
+    Then El sistema lo redireccionara a la pagina de compras
 
-  @Test
-  Scenario: Validar que se muestre el naver con las opciones correspondientes
-    Given que estoy dentro del home
-    When verifico la existencia del naver, menu y carrito de compra
-    Then el sistema debe mostrar que el naver existe con el titulo "Swag Labs"
-    And el menu sera desplegable, mostrando un listado de opciones y con la opcion de cerrarlo
-    And el carrito de compra sera un icono de carro de supermercado, y al dar clic lo redireccionar a la seccion de carrito de compra
+  @Tests
+  Scenario: Verificar que la pagina de compra contenga el naver correspondiente, el menu y el carrito de compra
+    Given que el usuario entro a la pagina de compra
+    When Valida el naver, menu e icono de compra
+    Then el sistema permitira visualizar en el naver el menu interactivo con sus respectivas opciones
+    And el sistema permitira visualizar en el naver el icono de compra y la redireccion del misma a la pestaña de tus productso añadidos al carr
