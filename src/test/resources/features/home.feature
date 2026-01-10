@@ -10,4 +10,4 @@ Feature: Validación y verificación de la pagina de compra
     Given que el usuario entro a la pagina de compra
     When Valida el naver, menu e icono de compra
     Then el sistema permitira visualizar en el naver el menu interactivo con sus respectivas opciones
-    And el sistema permitira visualizar en el naver el icono de compra y la redireccion del misma a la pestaña de tus productso añadidos al carr
+    And el sistema permitira visualizar en el naver el icono de compra y la redireccion del misma a la pestaña de tus productso añadidos al carro
