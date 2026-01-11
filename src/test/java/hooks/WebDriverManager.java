@@ -15,9 +15,12 @@ import java.util.Map;
 public class WebDriverManager {
 
     public static WebDriver driver;
-    public static final String BROWSER = "chrome";
+    //public static final String BROWSER = "chrome";
 
     public static WebDriver getDriver() {
+
+       String BROWSER =getBrowser();
+
         if (driver == null) {
 
             if (BROWSER.equals("chrome")) {
@@ -51,10 +54,15 @@ public class WebDriverManager {
                 driver = new FirefoxDriver();
                 driver.manage().window().maximize();
             }
-
-
         }
         return driver;
+    }
+
+    private static String getBrowser() {
+        String browser = null;
+        browser = System.getenv("BROWSER");
+        return browser;
+
     }
 
 }
