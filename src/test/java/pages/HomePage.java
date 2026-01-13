@@ -1,70 +1,34 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import utils.FactoryWebElements;
+
+import java.util.List;
+
 public class HomePage {
 
-    private String TxtTiteHome = "//div[@class='app_logo']";
-    private String TxtNavarHome = "//div[@id='header_container']//child::div[@class='primary_header']";
-    private String IconMenu = "//button[@id='react-burger-menu-btn']";
-    private String IconCar = "//a[@class='shopping_cart_link']";
-    private String BmMenu = "//div[@class='bm-menu']";
-    private String TxtListMenu = "//nav[@class='bm-item-list']//child::a[@class='bm-item menu-item']";
-
-    public HomePage() {}
-
-    public HomePage(String txtTiteHome, String txtNavarHome, String iconMenu, String iconCar, String bmMenu, String txtListMenu) {
-        TxtTiteHome = txtTiteHome;
-        TxtNavarHome = txtNavarHome;
-        IconMenu = iconMenu;
-        IconCar = iconCar;
-        BmMenu = bmMenu;
-        TxtListMenu = txtListMenu;
+    public static WebElement getTitelHome(WebDriver driver) {
+        return FactoryWebElements.initWebElementXpath(driver, "//div[@class='app_logo']");
     }
 
-    public String getTxtTiteHome() {
-        return TxtTiteHome;
+    public static WebElement getNavarHome(WebDriver driver) {
+        return FactoryWebElements.initWebElementXpath(driver, "//div[@id='header_container']//child::div[@class='primary_header']");
     }
 
-    public void setTxtTiteHome(String txtTiteHome) {
-        TxtTiteHome = txtTiteHome;
+    public static WebElement getIconMenu(WebDriver driver) {
+        return FactoryWebElements.initWebElementXpath(driver, "//button[@id='react-burger-menu-btn']");
     }
 
-    public String getTxtNavarHome() {
-        return TxtNavarHome;
+    public static WebElement getIconoCar(WebDriver driver) {
+        return FactoryWebElements.initWebElementXpath(driver, "//a[@class='shopping_cart_link']");
     }
 
-    public void setTxtNavarHome(String txtNavarHome) {
-        TxtNavarHome = txtNavarHome;
+    public static WebElement getIconoBurger(WebDriver driver) {
+        return FactoryWebElements.initWebElementXpath(driver, "//div[@class='bm-menu']");
     }
 
-    public String getIconMenu() {
-        return IconMenu;
-    }
-
-    public void setIconMenu(String iconMenu) {
-        IconMenu = iconMenu;
-    }
-
-    public String getIconCar() {
-        return IconCar;
-    }
-
-    public void setIconCar(String iconCar) {
-        IconCar = iconCar;
-    }
-
-    public String getBmMenu() {
-        return BmMenu;
-    }
-
-    public void setBmMenu(String bmMenu) {
-        BmMenu = bmMenu;
-    }
-
-    public String getTxtListMenu() {
-        return TxtListMenu;
-    }
-
-    public void setTxtListMenu(String txtListMenu) {
-        TxtListMenu = txtListMenu;
+    public static List<WebElement> getListMenu(WebDriver driver) {
+        return FactoryWebElements.initWebElementsXpath(driver, "//nav[@class='bm-item-list']//child::a[@class='bm-item menu-item']");
     }
 }
