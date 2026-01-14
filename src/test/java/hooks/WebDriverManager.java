@@ -18,9 +18,7 @@ public class WebDriverManager {
     //public static final String BROWSER = "chrome";
 
     public static WebDriver getDriver() {
-
-       String BROWSER =getBrowser();
-
+       String BROWSER =  getBrowser();
         if (driver == null) {
 
             if (BROWSER.equals("chrome")) {
@@ -62,7 +60,6 @@ public class WebDriverManager {
         String browser = null;
         browser = System.getenv("BROWSER");
         return browser;
-
     }
 
 }
