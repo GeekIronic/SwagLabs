@@ -11,3 +11,12 @@ Feature: Validación y verificación de la pagina de compra
     When Valida el naver, menu e icono de compra
     Then el sistema permitira visualizar en el naver el menu interactivo con sus respectivas opciones
     And el sistema permitira visualizar en el naver el icono de compra y la redireccion del misma a la pestaña de tus productso añadidos al carro
+
+
+  Scenario: Agregar un producto al carro
+    Given que el usuario entro a la pagina de compra
+    When el usuario da clic en el producto "Sauce Labs Bolt T-Shirt"
+    Then el sistema lo redireccionara a la pagina de descripcion del producto "Sauce Labs Bolt T-Shirt"
+    And mostrara la descripcion "Get your testing superhero on with the Sauce Labs bolt T-shirt. From American Apparel, 100% ringspun combed cotton, heather gray with red bolt."
+    And mostrara el precio "$15.99"
+    And muestra el boton de "Add to cart"
