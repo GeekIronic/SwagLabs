@@ -31,6 +31,11 @@ public class home {
                 throw new RuntimeException(e);
         }
         pages.home.get_login(driver).click();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Then("el sistema lo redireccionara a la pagina de compras")

@@ -1,7 +1,7 @@
 Feature: Validación de la pagina inventario, sus articulos, botones y seleccion de articulos
 
   Background: Validación de acceso mediante credenciales correctas
-    Given el usuario inicia sesion con las credenciales user "" and passowrd ""
+    Given el usuario inicia sesion con las credenciales user "standard_user" and passowrd "secret_sauce"
   @Test
   Scenario: Validar que la pagina de inventario cuente con las opciones de menu
     Given el usuario entra a la pagina de inventario

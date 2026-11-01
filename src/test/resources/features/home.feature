@@ -1,6 +1,5 @@
 Feature: Validación de acceso mediante credenciales
 
-
   Scenario Outline: Entrada exitosa al sistema
     Given el usuario entro a la pagina web
     When el usuario ingresa las credenciales de usuario "<user>" y contrasena "<password>" y da clic en login

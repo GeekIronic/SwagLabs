@@ -1,14 +1,25 @@
 package stepdefinition;
 
+import configs.webmanagerdriver;
 import io.cucumber.java.en.*;
+import org.openqa.selenium.WebDriver;
 
 public class inventory {
 
     //public final static WebDriver driver = webmanagerdriver.getDriver();
 
     @Given("el usuario inicia sesion con las credenciales user {string} and passowrd {string}")
-    public void el_usuario_inicia_sesion_con_las_credenciales_user_and_passowrd(String string, String string2) {
-        System.out.println("");
+    public void el_usuario_inicia_sesion_con_las_credenciales_user_and_passowrd(String user, String password) {
+        WebDriver driver = webmanagerdriver.getDriver();
+        driver.get("https://www.saucedemo.com/");
+        try {
+            Thread.sleep(2000);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        pages.home.get_user(driver).sendKeys(user);
+        pages.home.get_password(driver).sendKeys(password);
+        pages.home.get_login(driver).click();
     }
     @Given("el usuario entra a la pagina de inventario")
     public void el_usuario_entra_a_la_pagina_de_inventario() {
